@@ -4,8 +4,7 @@ import java.util.List;
 
 public interface Component {
 
-    String reconstructComponent(); //
-
+    String reconstructComponent();
 
     ComponentType getComponentType();
 

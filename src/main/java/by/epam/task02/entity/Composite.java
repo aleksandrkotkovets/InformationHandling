@@ -21,13 +21,13 @@ public class Composite implements Component {
             componentList = new ArrayList<>(composite.getAllChildren());
         } else throw new RuntimeException();
     }
+
     @Override
     public String reconstructComponent() {
         String result = " ";
         switch (componentType) {
             case WORD:
             case NUMBER:
-            case EXPRESSION:
             case LEXEMA:
                 result = componentList.stream()
                         .map(Component::reconstructComponent)
@@ -97,4 +97,5 @@ public class Composite implements Component {
         sb.append('}');
         return sb.toString();
     }
+
 }

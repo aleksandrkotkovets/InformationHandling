@@ -14,20 +14,22 @@ public class DataReader {
 
     private static final Logger LOGGER = Logger.getLogger(DataReader.class);
 
-       public String readData(String path) throws ReadDataException {
+
+    public String readData(String path) throws ReadDataException {
         File file = new File(path);
         FileValidator fileValidator = new FileValidator();
-        if (!fileValidator.checkFile(file)) {
-            LOGGER.error("File: " + path + " is not exist or empty");
-            throw new ReadDataException("File: " + path + " is not exist or empty");
+        if(!fileValidator.checkFile(file)) {
+            LOGGER.warn("File:" + path + "  is not exist or empty");
+            throw new ReadDataException("File is not exist or empty - " + path);
         }
         try {
             List<String> allLines = Files.readAllLines(file.toPath());
-            LOGGER.info("File: " + path + " was successfully read");
-            String joined = String.join(" ", allLines);
-            return joined;
+            LOGGER.info("File:" + file + " was successfully read");
+            String allText = String.join(" ", allLines);
+            return allText;
         } catch (IOException e) {
-            LOGGER.error("File:" + path + ". Exception with readAllLines method: " + e);
+            LOGGER.warn("File:" + path + ". Exception with readAllLines method");
+            LOGGER.fatal(e);
             throw new ReadDataException(e);
         }
     }

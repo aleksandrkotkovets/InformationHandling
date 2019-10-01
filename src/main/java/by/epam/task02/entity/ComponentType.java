@@ -1,12 +1,11 @@
 package by.epam.task02.entity;
 
-enum ComponentType {
+public enum ComponentType {
     TEXT,
     PARAGRAPH,
     SENTENCE,
     LEXEMA,
     WORD,
-    EXPRESSION,
     NUMBER,
     SYMBOL
 }
